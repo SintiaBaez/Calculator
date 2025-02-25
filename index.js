@@ -3,33 +3,30 @@ document.addEventListener("DOMContentLoaded", function () {
   const errorMessage = document.getElementById("errorMessage");
   const buttons = document.querySelectorAll("button");
 
-  // event listeners to buttons
   buttons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const value = button.textContent;
-
-      // If the clicked button is an operator or number, append to the outputScreen
-      if (value !== "=" && value !== "Cl" && value !== "DEL") {
-        outputScreen.value += value;
-      }
-      // Calculate result when "=" is clicked
-      else if (value === "=") {
-        calculate();
-      }
-      // Clear the screen when "Cl" is clicked
-      else if (value === "Cl") {
-        clearScreen();
-      }
-      // Delete last character when "DEL" is clicked
-      else if (value === "DEL") {
-        deleteLastCharacter();
-      }
-    });
+    button.addEventListener("click", handleInput);
+    button.addEventListener("touchstart", handleInput);
   });
+
+  function handleInput(event) {
+    event.preventDefault();
+    const value = event.target.textContent;
+
+    if (value !== "=" && value !== "Cl" && value !== "DEL") {
+      outputScreen.value += value;
+    } else if (value === "=") {
+      calculate();
+    } else if (value === "Cl") {
+      clearScreen();
+    } else if (value === "DEL") {
+      deleteLastCharacter();
+    }
+  }
 
   function calculate() {
     try {
       outputScreen.value = math.evaluate(outputScreen.value);
+      errorMessage.textContent = "";
     } catch (err) {
       errorMessage.textContent = "Invalid Expression";
       outputScreen.value = "";
@@ -38,11 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function clearScreen() {
     outputScreen.value = "";
-    errorMessage.textContent = ""; // Clear any error message when clearing the screen
+    errorMessage.textContent = "";
   }
 
   function deleteLastCharacter() {
-    // Remove last character from the output screen
     outputScreen.value = outputScreen.value.slice(0, -1);
   }
 });
