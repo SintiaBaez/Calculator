@@ -63,3 +63,11 @@ button:hover {
   background-color: #cff1f9;
   color: #0a0002;
 }
+
+@media (max-width: 480px) {
+  #outputScreen {
+    font-size: 1.8rem;
+    height: 50px;
+    color: white;
+  }
+}
