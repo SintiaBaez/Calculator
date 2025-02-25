@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   buttons.forEach((button) => {
     button.addEventListener("click", handleInput);
-    button.addEventListener("touchstart", handleInput);
+    button.addEventListener("pointerdown", handleInput);
   });
 
   function handleInput(event) {
