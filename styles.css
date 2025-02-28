@@ -67,13 +67,20 @@ button:hover {
 
 @media (max-width: 480px) {
   #outputScreen {
-    font-size: 45px;
+    font-size: 8vw;
     color: black;
   }
   button {
-    font-size: 1rem;
-    height: 40px;
-    width: 40px;
+    font-size: 1.2rem;
+    height: 50px;
+    width: 50px;
     margin: 5px;
+    touch-action: manipulation;
+  }
+
+  .button {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 8px;
   }
 }
